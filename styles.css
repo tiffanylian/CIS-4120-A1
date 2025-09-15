@@ -1,0 +1,155 @@
+/* ---------- Design tokens ---------- */
+:root{
+  --penn:#001f5b;
+  --maroon:#981b2a;
+  --bg:#f3f4f6;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#e5e7eb;
+  --radius-lg:16px;
+  --radius-xl:24px;
+  --focus: #1d4ed8;
+}
+
+/* ---------- App frame ---------- */
+.app-body{ min-height:100vh; background:var(--bg); color:var(--text); display:flex; align-items:flex-start; justify-content:center; padding:1rem; }
+.phone-frame{ width:100%; max-width:420px; background:#fff; border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.05); }
+
+/* ---------- Header ---------- */
+.site-header{ background:var(--penn); color:#fff; padding:1rem; }
+.header-inner{ display:flex; align-items:center; justify-content:space-between; }
+.brand{ display:flex; align-items:center; gap:.75rem; }
+.brand-logo{ width:36px; height:36px; object-fit:contain; }
+.brand-title{ font-size:1.25rem; font-weight:600; }
+.logout-icon{ width:20px; height:20px; opacity:.9; }
+
+/* ---------- Content layout ---------- */
+.page-content{ padding:0.75rem 1.25rem 1.5rem; display:grid; gap:1.25rem; }
+
+/* ---------- Card ---------- */
+.card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
+.card-pill{ padding:1rem 1.25rem; border-top-left-radius:var(--radius-lg); border-top-right-radius:var(--radius-lg); color:#fff; }
+.card-pill--maroon{ background:var(--maroon); }
+.card-body{ padding:1.25rem; display:grid; gap:1.25rem; }
+
+.section-title{ font-size:1.125rem; font-weight:600; }
+
+/* ---------- Fields ---------- */
+.field{ display:grid; gap:.5rem; }
+.field-label{ font-size:.9rem; font-weight:600; color:#334155; }
+
+.input{ height:3rem; width:100%; border:1px solid var(--border); border-radius:12px; background:#fff; padding:0 .75rem; font:inherit; color:var(--text); }
+.input::placeholder{ color:#94a3b8; }
+
+.icon-input{ position:relative; }
+.input-icon{ position:absolute; left:.75rem; top:50%; transform:translateY(-50%); width:20px; height:20px; color:#94a3b8; }
+.icon-input .input{ padding-left:2.5rem; }
+
+.grid-2{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.75rem; }
+
+
+.checkbox{ display:flex; align-items:center; gap:.75rem; color:#334155; }
+.checkbox-input{ width:1.125rem; height:1.125rem; border:1px solid var(--border); border-radius:.4rem; }
+
+/* ---------- Advanced toggle ---------- */
+.adv-toggle{ width:100%; display:flex; align-items:center; justify-content:space-between; color:var(--penn); font-weight:600; padding:0 .25rem; }
+.adv-chevron{ width:16px; height:16px; transition:transform .2s ease; }
+.rotate-180{ transform:rotate(180deg); }
+.adv-content{ display:grid; gap:1rem; }
+
+/* ---------- Buttons ---------- */
+.button{ display:inline-flex; align-items:center; justify-content:center; gap:.5rem; height:3.5rem; width:100%; border-radius:14px; font-weight:600; border:1px solid transparent; }
+.button--primary{ background:var(--penn); color:#fff; }
+.button--primary:hover{ background:rgba(0,31,91,.92); }
+.button-icon{ width:16px; height:16px; }
+
+/* ---------- Custom dropdown ---------- */
+.dropdown{ position:relative; }
+.dropdown-trigger{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  width:100%; min-height:3rem; display:flex; align-items:center; justify-content:space-between;
+  border:1px solid var(--border); border-radius:12px; background:#f8fafc; padding:.75rem;
+  text-align:left; gap:.5rem;
+}
+.dropdown-trigger:focus{ outline:2px solid var(--focus); outline-offset:2px; }
+.dropdown-text{ flex:1; color:var(--text); }
+.dropdown-text[data-placeholder]{ color:#94a3b8; }
+.no-chev{ width:16px; height:16px; color:#64748b; transition:transform .15s ease; }
+.dropdown.open .no-chev{ transform:rotate(180deg); }
+
+.dropdown-menu{
+  position:absolute; left:0; right:0; top:calc(100% + 4px);
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  box-shadow:0 8px 24px rgba(2,8,23,.12); padding:.25rem; z-index:50;
+  max-height:240px; overflow:auto;
+}
+.dropdown-option{
+  padding:.625rem .75rem; border-radius:8px; cursor:pointer; font-size:.95rem;
+}
+.dropdown-option:hover{ background:#f1f5f9; }
+.dropdown-option.is-selected{ background:#e2e8f0; }
+
+/* ---------- Schedule ---------- */
+.schedule-link{ display:block; }
+.schedule-link-inner{ background:var(--penn); color:#fff; height:4rem; padding:0 1.25rem; border-radius:16px; display:flex; align-items:center; justify-content:space-between; }
+.schedule-link-left{ display:flex; align-items:center; gap:.75rem; }
+.schedule-link-text{ font-weight:600; letter-spacing:.02em; }
+
+/* Single chevron via pseudo-element to avoid duplicates */
+.dropdown-trigger::after{
+  content:"";
+  width:16px; height:16px; flex:0 0 16px;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox=\"0 0 20 20\"><path fill=\"black\" d=\"M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.08 1.04l-4.25 4.25a.75.75 0 0 1-1.06 0L5.21 8.27a.75.75 0 0 1 .02-1.06z\"/></svg>') no-repeat center / contain;
+  background:#64748b;
+  transition: transform .15s ease;
+}
+.dropdown.open .dropdown-trigger::after{ transform: rotate(180deg); }
+
+/* Smaller font size for dropdown text and options */
+.dropdown-trigger,
+.dropdown-option,
+.dropdown-text {
+  font-size: 0.85rem;
+}
+
+/* --- Cross-mobile normalization to match desktop preview --- */
+html{ font-size:16px; -webkit-text-size-adjust:100%; }
+body{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+
+/* Avoid iOS default inner shadows/rounded corners on controls */
+button, input, select, textarea{
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 12px;
+}
+
+/* Ensure our dropdown trigger looks identical across devices */
+.dropdown-trigger{
+  background:#f8fafc;
+  font-size:0.85rem; /* keep smaller text */
+  line-height:1.25rem;
+}
+
+/* Prevent iOS from auto-zooming when tapping inputs */
+.input{ font-size:16px; } /* 16px minimum prevents zoom on focus */
+
+/* Tappable hit-area without tap highlight */
+*{ -webkit-tap-highlight-color: transparent; }
+
+/* Use our focus ring consistently */
+:focus-visible{ outline:2px solid #1d4ed8; outline-offset:2px; }
+:focus{ outline:none; }
+
+/* Keep 2 columns even on mobile; only stack on very narrow viewports */
+@media (max-width: 380px){
+  .grid-2{ grid-template-columns:1fr; }
+}
+
+/* Allow inputs to shrink nicely inside two-column grid */
+.field{ min-width:0; }
+.dropdown-trigger{ padding:0.65rem 0.75rem; } /* slightly tighter to fit two cols */
+.dropdown-text{ font-size:0.84rem; }
